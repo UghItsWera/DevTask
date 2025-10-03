@@ -1,31 +1,22 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using VertoDevTest.Models;
+using Microsoft.EntityFrameworkCore;
+using VertoDevTest.Data;
 
-namespace VertoDevTest.Controllers;
-
-public class HomeController : Controller
+namespace VertoDevTest.Controllers
 {
-    private readonly ILogger<HomeController> _logger;
-
-    public HomeController(ILogger<HomeController> logger)
+    public class HomeController : Controller
     {
-        _logger = logger;
-    }
+        private readonly AppDbContext _db;
+        public HomeController(AppDbContext db) => _db = db;
 
-    public IActionResult Index()
-    {
-        return View();
-    }
+        public async Task<IActionResult> Index()
+        {
+            var sections = await _db.PageSections
+                .Include(s => s.MediaItem)
+                .OrderBy(s => s.SortOrder)
+                .ToListAsync();
 
-    public IActionResult Privacy()
-    {
-        return View();
-    }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
-    {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return View(sections);
+        }
     }
 }

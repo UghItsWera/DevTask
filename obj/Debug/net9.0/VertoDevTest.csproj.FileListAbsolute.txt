@@ -226,3 +226,4 @@ C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\refi
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.pdb
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.genruntimeconfig.cache
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\ref\VertoDevTest.dll
+C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.sourcelink.json
