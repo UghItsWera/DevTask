@@ -7,17 +7,17 @@ namespace VertoDevTest.Models
         public int Id { get; set; }
 
         [Required, StringLength(150)]
-        public string Title { get; set; }
+        public string Title { get; set; } = string.Empty;
 
         [DataType(DataType.Html)]
-        public string Body { get; set; } // stored as HTML/plain text
+        public string Body { get; set; } = string.Empty; // stored as HTML/plain text
 
         // optional heading level metadata; helps SEO/editor control
         public string HtmlTag { get; set; } = "h2";
 
         // Link any image to this section:
         public int? MediaItemId { get; set; }
-        public MediaItem MediaItem { get; set; }
+        public MediaItem? MediaItem { get; set; }
 
         // ordering for homepage sections
         public int SortOrder { get; set; } = 0;

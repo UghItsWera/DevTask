@@ -4,16 +4,18 @@
     @foreach (var slide in Model.Where(s => s.SortOrder <= 3))
     {
         <div class="slide">
-            <img src="@slide.MediaItem.Url" alt="@slide.MediaItem.AltText" />
-            <<@slide.HtmlTag>>@slide.Title</<@slide.HtmlTag>>
+            <img src="@slide.MediaItem?.Url" alt="@slide.MediaItem?.AltText" />
+            @Html.Raw($"<{slide.HtmlTag}>{slide.Title}</{slide.HtmlTag}>")
             <p>@slide.Body</p>
         </div>
     }
 </div>
 
 <section class="custom-section">
-    var custom = Model.FirstOrDefault(s => s.SortOrder == 4);
-    if (custom != null)
+    @{
+        var custom = Model.FirstOrDefault(s => s.SortOrder == 4);
+    }
+    @if (custom != null)
     {
         <h2>@custom.Title</h2>
         <p>@custom.Body</p>
@@ -26,7 +28,7 @@
         @foreach (var project in Model.Where(s => s.SortOrder >= 5))
         {
             <div class="project-card">
-                <img src="@project.MediaItem.Url" alt="@project.MediaItem.AltText" />
+                <img src="@project.MediaItem?.Url" alt="@project.MediaItem?.AltText" />
                 <h3>@project.Title</h3>
                 <p>@project.Body</p>
             </div>
