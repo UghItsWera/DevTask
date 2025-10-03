@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("VertoDevTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d286c2ca3a3324f17a1b04ce7964a3c45505c820")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+95d95078c420cb9528bf21bf847b622d3954738b")]
 [assembly: System.Reflection.AssemblyProductAttribute("VertoDevTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("VertoDevTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
