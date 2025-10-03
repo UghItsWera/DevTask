@@ -1,0 +1,52 @@
+﻿@model IEnumerable<VertoDevTest.Models.PageSection>
+@{
+    ViewData["Title"] = "Home";
+    Layout = "_Layout";
+}
+
+<section class="hero-slider">
+    <div class="slider">
+        <!-- Slider items. You can use PageSection with a MediaItem for each slide or hard-code two sample slides -->
+        @foreach(var s in Model.Where(m => m.MediaItem != null))
+        {
+            <div class="slide" aria-label="@s.Title">
+                <img src="@s.MediaItem.Url" alt="@s.MediaItem.AltText" />
+                <div class="slide-caption">
+                    <h1>@s.Title</h1>
+                    <div class="lead">@Html.Raw(s.Body)</div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<section class="content-sections container">
+    @foreach(var s in Model)
+    {
+        <section class="panel" aria-labelledby="section-@s.Id">
+            <@s.HtmlTag id="section-@s.Id">@s.Title</@s.HtmlTag>
+            @if (s.MediaItem != null)
+            {
+                <img src="@s.MediaItem.Url" alt="@s.MediaItem.AltText" class="panel-image" />
+            }
+            <div class="panel-body">@Html.Raw(s.Body)</div>
+        </section>
+    }
+</section>
+
+@section Scripts {
+<script>
+    $(function() {
+        $('.slider').slick({
+            dots: true,
+            infinite: true,
+            speed: 600,
+            slidesToShow: 1,
+            adaptiveHeight: true,
+            arrows: true,
+            autoplay: true,
+            autoplaySpeed: 5000
+        });
+    });
+</script>
+}
