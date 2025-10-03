@@ -7,24 +7,24 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 // Configure Entity Framework with SQL Server
-builder.Services.AddDbContext<ApplicationDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 
-// Ensure database is created
+// Ensure database is created and migrated
 using (var scope = app.Services.CreateScope())
 {
     var services = scope.ServiceProvider;
     try
     {
-        var context = services.GetRequiredService<ApplicationDbContext>();
-        context.Database.EnsureCreated();
+        var context = services.GetRequiredService<AppDbContext>();
+        context.Database.Migrate(); // This will apply migrations automatically
     }
     catch (Exception ex)
     {
         var logger = services.GetRequiredService<ILogger<Program>>();
-        logger.LogError(ex, "An error occurred creating the DB.");
+        logger.LogError(ex, "An error occurred migrating the DB.");
     }
 }
 

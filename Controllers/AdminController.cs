@@ -7,10 +7,10 @@ namespace VertoDevTest.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly AppDbContext _context;
         private readonly IWebHostEnvironment _environment;
 
-        public AdminController(ApplicationDbContext context, IWebHostEnvironment environment)
+        public AdminController(AppDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
             _environment = environment;
