@@ -1,66 +1,35 @@
-﻿@model IEnumerable<VertoDevTest.Models.PageSection>
-@{
-    ViewData["Title"] = "Home";
-    Layout = "_Layout";
-}
+﻿@model IEnumerable<PageSection>
 
-// HERO / SLIDER
-<section class="hero">
-    <div class="hero-slider">
-        @* Use PageSections that are slides (we'll assume those with MediaItem and SortOrder < 10 are slides) *@
-        @foreach(var s in Model.Where(p => p.MediaItem != null && p.SortOrder < 10).OrderBy(p => p.SortOrder))
+<div class="hero-slider">
+    @foreach (var slide in Model.Where(s => s.SortOrder <= 3))
+    {
+        <div class="slide">
+            <img src="@slide.MediaItem.Url" alt="@slide.MediaItem.AltText" />
+            <<@slide.HtmlTag>>@slide.Title</<@slide.HtmlTag>>
+            <p>@slide.Body</p>
+        </div>
+    }
+</div>
+
+<section class="custom-section">
+    var custom = Model.FirstOrDefault(s => s.SortOrder == 4);
+    if (custom != null)
+    {
+        <h2>@custom.Title</h2>
+        <p>@custom.Body</p>
+    }
+</section>
+
+<section class="projects">
+    <h2>Explore our latest work…</h2>
+    <div class="grid">
+        @foreach (var project in Model.Where(s => s.SortOrder >= 5))
         {
-            <div class="hero-slide" role="group" aria-label="@s.Title">
-                <img src="@s.MediaItem.Url" alt="@s.MediaItem.AltText" />
-                <div class="hero-overlay"></div>
-                <div class="hero-content container">
-                    <h1 class="hero-title">@s.Title</h1>
-                    @if(!string.IsNullOrWhiteSpace(s.Body)){
-                        <div class="hero-sub">@Html.Raw(s.Body)</div>
-                    }
-                    <div class="hero-cta">
-                        <a class="btn btn-primary" href="/OurWork">Explore our work</a>
-                    </div>
-                </div>
+            <div class="project-card">
+                <img src="@project.MediaItem.Url" alt="@project.MediaItem.AltText" />
+                <h3>@project.Title</h3>
+                <p>@project.Body</p>
             </div>
-        }
-    </div>
-</section>
-
-<!-- FEATURE PANEL: left circular icons, right text -->
-<section class="feature-panel container">
-    <div class="feature-inner">
-        <div class="feature-visual" aria-hidden="true">
-            <img src="/images/circle-icons.png" alt="Services icons graphic" />
-        </div>
-        <div class="feature-copy">
-            <h2 class="serif">Custom built design <br />&amp; furniture solutions</h2>
-            <p class="muted">Specialists in transforming commercial spaces into agile, functional and empowering environments.</p>
-            <a class="btn btn-ghost" href="/Services">What we do</a>
-        </div>
-    </div>
-</section>
-
-<!-- LATEST WORK GRID -->
-<section class="work container">
-    <h2 class="center serif">Explore our latest work...</h2>
-
-    <div class="work-grid">
-        @* We'll render the next three PageSections with MediaItem as project cards.
-           If you have a separate Projects model, swap the source accordingly. *@
-        @foreach(var p in Model.Where(x => x.MediaItem != null && x.SortOrder >= 10).OrderBy(x => x.SortOrder).Take(6))
-        {
-            <article class="card">
-                <a href="/Work/Details/@p.Id" class="card-link">
-                    <div class="card-media">
-                        <img src="@p.MediaItem.Url" alt="@p.MediaItem.AltText" />
-                    </div>
-                    <div class="card-body">
-                        <h3>@p.Title</h3>
-                        <p class="card-caption">Case Study Name Here</p>
-                    </div>
-                </a>
-            </article>
         }
     </div>
 </section>
