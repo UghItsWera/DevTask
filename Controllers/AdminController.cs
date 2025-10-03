@@ -7,140 +7,202 @@ namespace VertoDevTest.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly AppDbContext _db;
-        private readonly IWebHostEnvironment _env;
+        private readonly ApplicationDbContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public AdminController(AppDbContext db, IWebHostEnvironment env)
+        public AdminController(ApplicationDbContext context, IWebHostEnvironment environment)
         {
-            _db = db;
-            _env = env;
+            _context = context;
+            _environment = environment;
         }
 
-        // List items
+        // GET: Admin
         public async Task<IActionResult> Index()
         {
-            var list = await _db.PageSections.Include(p => p.MediaItem).OrderBy(p => p.SortOrder).ToListAsync();
-            return View(list);
+            var sections = await _context.PageSections
+                .OrderBy(s => s.DisplayOrder)
+                .ToListAsync();
+            return View(sections);
         }
 
-        // Create GET
-        public IActionResult Create() => View();
+        // GET: Admin/Create
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        // Create POST
+        // POST: Admin/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(PageSection model, IFormFile imageFile)
+        public async Task<IActionResult> Create(PageSection pageSection, IFormFile? ImageFile)
         {
-            if (!ModelState.IsValid) return View(model);
-
-            if (imageFile != null && imageFile.Length > 0)
+            if (ModelState.IsValid)
             {
-                var uploads = Path.Combine(_env.WebRootPath, "uploads");
-                Directory.CreateDirectory(uploads);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(imageFile.FileName)}";
-                var filePath = Path.Combine(uploads, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
+                // Handle image upload
+                if (ImageFile != null && ImageFile.Length > 0)
                 {
-                    await imageFile.CopyToAsync(stream);
+                    var uploadsFolder = Path.Combine(_environment.WebRootPath, "images", "uploads");
+                    
+                    // Create directory if it doesn't exist
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ImageFile.CopyToAsync(fileStream);
+                    }
+
+                    pageSection.ImagePath = "/images/uploads/" + uniqueFileName;
                 }
 
-                var media = new MediaItem
-                {
-                    FileName = fileName,
-                    ContentType = imageFile.ContentType,
-                    Url = $"/uploads/{fileName}",
-                    AltText = model.Title
-                };
+                pageSection.CreatedDate = DateTime.Now;
+                _context.Add(pageSection);
+                await _context.SaveChangesAsync();
+                
+                TempData["SuccessMessage"] = "Section created successfully!";
+                return RedirectToAction(nameof(Index));
+            }
+            return View(pageSection);
+        }
 
-                _db.MediaItems.Add(media);
-                await _db.SaveChangesAsync();
-
-                model.MediaItemId = media.Id;
+        // GET: Admin/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
             }
 
-            _db.PageSections.Add(model);
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            var pageSection = await _context.PageSections.FindAsync(id);
+            if (pageSection == null)
+            {
+                return NotFound();
+            }
+            return View(pageSection);
         }
 
-        // Edit GET
-        public async Task<IActionResult> Edit(int id)
-        {
-            var item = await _db.PageSections.Include(p => p.MediaItem).FirstOrDefaultAsync(p => p.Id == id);
-            if (item == null) return NotFound();
-            return View(item);
-        }
-
-        // Edit POST
+        // POST: Admin/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, PageSection model, IFormFile imageFile)
+        public async Task<IActionResult> Edit(int id, PageSection pageSection, IFormFile? ImageFile)
         {
-            if (id != model.Id) return BadRequest();
-            if (!ModelState.IsValid) return View(model);
-
-            var existing = await _db.PageSections.Include(p => p.MediaItem).FirstOrDefaultAsync(p => p.Id == id);
-            if (existing == null) return NotFound();
-
-            existing.Title = model.Title;
-            existing.Body = model.Body;
-            existing.HtmlTag = model.HtmlTag;
-            existing.SortOrder = model.SortOrder;
-
-            if (imageFile != null && imageFile.Length > 0)
+            if (id != pageSection.Id)
             {
-                var uploads = Path.Combine(_env.WebRootPath, "uploads");
-                Directory.CreateDirectory(uploads);
-
-                var fileName = $"{Guid.NewGuid()}{Path.GetExtension(imageFile.FileName)}";
-                var filePath = Path.Combine(uploads, fileName);
-
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    await imageFile.CopyToAsync(stream);
-                }
-
-                var media = new MediaItem
-                {
-                    FileName = fileName,
-                    ContentType = imageFile.ContentType,
-                    Url = $"/uploads/{fileName}",
-                    AltText = model.Title
-                };
-
-                _db.MediaItems.Add(media);
-                await _db.SaveChangesAsync();
-
-                existing.MediaItemId = media.Id;
+                return NotFound();
             }
 
-            _db.PageSections.Update(existing);
-            await _db.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    // Handle image upload
+                    if (ImageFile != null && ImageFile.Length > 0)
+                    {
+                        // Delete old image if exists
+                        if (!string.IsNullOrEmpty(pageSection.ImagePath))
+                        {
+                            var oldImagePath = Path.Combine(_environment.WebRootPath, pageSection.ImagePath.TrimStart('/'));
+                            if (System.IO.File.Exists(oldImagePath))
+                            {
+                                System.IO.File.Delete(oldImagePath);
+                            }
+                        }
+
+                        var uploadsFolder = Path.Combine(_environment.WebRootPath, "images", "uploads");
+                        
+                        if (!Directory.Exists(uploadsFolder))
+                        {
+                            Directory.CreateDirectory(uploadsFolder);
+                        }
+
+                        var uniqueFileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
+                        var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                        using (var fileStream = new FileStream(filePath, FileMode.Create))
+                        {
+                            await ImageFile.CopyToAsync(fileStream);
+                        }
+
+                        pageSection.ImagePath = "/images/uploads/" + uniqueFileName;
+                    }
+
+                    pageSection.ModifiedDate = DateTime.Now;
+                    _context.Update(pageSection);
+                    await _context.SaveChangesAsync();
+                    
+                    TempData["SuccessMessage"] = "Section updated successfully!";
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!PageSectionExists(pageSection.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(pageSection);
         }
 
-        // Delete GET
-        public async Task<IActionResult> Delete(int id)
+        // GET: Admin/Delete/5
+        public async Task<IActionResult> Delete(int? id)
         {
-            var item = await _db.PageSections.Include(p => p.MediaItem).FirstOrDefaultAsync(p => p.Id == id);
-            if (item == null) return NotFound();
-            return View(item);
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var pageSection = await _context.PageSections
+                .FirstOrDefaultAsync(m => m.Id == id);
+            
+            if (pageSection == null)
+            {
+                return NotFound();
+            }
+
+            return View(pageSection);
         }
 
-        // Delete POST
+        // POST: Admin/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var item = await _db.PageSections.FindAsync(id);
-            if (item != null)
+            var pageSection = await _context.PageSections.FindAsync(id);
+            
+            if (pageSection != null)
             {
-                _db.PageSections.Remove(item);
-                await _db.SaveChangesAsync();
+                // Delete associated image file if exists
+                if (!string.IsNullOrEmpty(pageSection.ImagePath))
+                {
+                    var imagePath = Path.Combine(_environment.WebRootPath, pageSection.ImagePath.TrimStart('/'));
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        System.IO.File.Delete(imagePath);
+                    }
+                }
+
+                _context.PageSections.Remove(pageSection);
+                await _context.SaveChangesAsync();
+                
+                TempData["SuccessMessage"] = "Section deleted successfully!";
             }
+
             return RedirectToAction(nameof(Index));
+        }
+
+        private bool PageSectionExists(int id)
+        {
+            return _context.PageSections.Any(e => e.Id == id);
         }
     }
 }

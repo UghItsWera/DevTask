@@ -2,44 +2,69 @@
 <html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>@ViewData["Title"] - VertoTest</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - iOTA Interiors</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;700;900&family=DM+Serif+Display&display=swap" rel="stylesheet">
-
-    <!-- Slick CSS (CDN). Replace with local if desired -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
-
-    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <header class="site-header">
-        <div class="container">
-            <div class="brand">
-                <a href="/"><img src="/images/logo.png" alt="Verto" /></a>
-            </div>
-            <nav class="main-nav">
-                <a href="/">Home</a>
-                <a href="/Admin">Admin</a>
-            </nav>
-        </div>
+    <!-- Header Navigation -->
+    <header>
+        <a href="/" class="logo" onclick="showAlert('Logo / Home'); return false;">iOTA</a>
+        <nav>
+            <a href="#" class="active" onclick="showAlert('Home'); return false;">Home</a>
+            <a href="#" onclick="showAlert('Services'); return false;">Services</a>
+            <a href="#" onclick="showAlert('Sustainability'); return false;">Sustainability</a>
+            <a href="#" onclick="showAlert('Our Work'); return false;">Our Work</a>
+            <a href="#" onclick="showAlert('Resources'); return false;">Resources</a>
+            <a href="#" onclick="showAlert('About iOTA'); return false;">About iOTA</a>
+            <a href="#" onclick="showAlert('Get In Touch'); return false;">Get In Touch</a>
+            <a href="#" class="btn-header" onclick="showAlert('Submit A Project'); return false;">📋 Submit A Project</a>
+            <span class="search-icon" onclick="showAlert('Search')">🔍</span>
+        </nav>
     </header>
 
-    <main role="main">
+    <!-- Main Content -->
+    <main>
         @RenderBody()
     </main>
 
-    <footer class="site-footer">
-        <div class="container">
-            <p>&copy; @DateTime.Now.Year VertoDevTest</p>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-company">
+                <div class="footer-logo">iOTA</div>
+                <div class="footer-info">
+                    <p>© iOTA Interiors Limited. iOTA Office Furniture</p>
+                    <p><a href="#" onclick="showAlert('Terms & Conditions'); return false;">Terms & Conditions</a></p>
+                    <p>Site by Verto</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Head Office</h4>
+                <p>The Coldbine, Gazillion Green Park, Dunston,</p>
+                <p>Northampton, NN7 2EQ</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Connect with Us</h4>
+                <p><a href="#" onclick="showAlert('Connect with Us'); return false;">Connect with Us</a></p>
+                <p><a href="#" onclick="showAlert('Like Us'); return false;">Like Us</a></p>
+                <p><a href="tel:+441604269610">📞 +44 (0) 1604 269610</a></p>
+                <p><a href="mailto:hello@iotaofficefurniture.co.uk">✉ hello@iotaofficefurniture.co.uk</a></p>
+            </div>
         </div>
     </footer>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <script src="~/js/site.js"></script>
-    @RenderSection("Scripts", required: false)
+    <script>
+        function showAlert(buttonName) {
+            alert('This is a button: ' + buttonName);
+        }
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

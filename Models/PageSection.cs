@@ -4,22 +4,29 @@ namespace VertoDevTest.Models
 {
     public class PageSection
     {
+        [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(150)]
-        public string Title { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(100)]
+        public string SectionType { get; set; } // Hero, Services, Portfolio, About
 
-        [DataType(DataType.Html)]
-        public string Body { get; set; } = string.Empty; // stored as HTML/plain text
+        [Required]
+        [MaxLength(200)]
+        public string Title { get; set; }
 
-        // optional heading level metadata; helps SEO/editor control
-        public string HtmlTag { get; set; } = "h2";
+        [MaxLength(2000)]
+        public string? Content { get; set; }
 
-        // Link any image to this section:
-        public int? MediaItemId { get; set; }
-        public MediaItem? MediaItem { get; set; }
+        [MaxLength(500)]
+        public string? ImagePath { get; set; }
 
-        // ordering for homepage sections
-        public int SortOrder { get; set; } = 0;
+        public int DisplayOrder { get; set; }
+
+        public bool IsActive { get; set; } = true;
+
+        public DateTime CreatedDate { get; set; } = DateTime.Now;
+
+        public DateTime? ModifiedDate { get; set; }
     }
 }

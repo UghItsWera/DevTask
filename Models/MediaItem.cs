@@ -4,19 +4,27 @@ namespace VertoDevTest.Models
 {
     public class MediaItem
     {
+        [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(255)]
-        public string FileName { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(200)]
+        public string Title { get; set; }
 
-        [Required, StringLength(255)]
-        public string ContentType { get; set; } = string.Empty;
+        [MaxLength(1000)]
+        public string? Description { get; set; }
 
-        // stored relative path like "uploads/imagename.jpg"
-        [Required, StringLength(500)]
-        public string Url { get; set; } = string.Empty;
+        [Required]
+        [MaxLength(500)]
+        public string FilePath { get; set; }
 
-        [StringLength(250)]
-        public string AltText { get; set; } = string.Empty;
+        [MaxLength(50)]
+        public string? FileType { get; set; } // Image, Video, Document
+
+        public long FileSize { get; set; }
+
+        public DateTime UploadDate { get; set; } = DateTime.Now;
+
+        public bool IsActive { get; set; } = true;
     }
 }
