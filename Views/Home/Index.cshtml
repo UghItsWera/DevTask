@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 }
 
-<!-- Hero Slider Section -->
 <section class="hero-slider">
     <div class="slider">
         @foreach (var slide in Model.Where(m => m.SectionType == "Hero"))
@@ -27,7 +26,6 @@
     </button>
 </section>
 
-<!-- Services Section -->
 <section class="services-section">
     <div class="services-icons">
     <img src="~/uploads/circle-icons.png" alt="Circle Icons" />
@@ -43,7 +41,6 @@
     </div>
 </section>
 
-<!-- Portfolio Section -->
 <section class="portfolio-section">
     <h2>Explore our latest work...</h2>
     <div class="portfolio-grid">
@@ -64,7 +61,6 @@
     </div>
 </section>
 
-<!-- Sectors Section -->
 <section class="sectors-section">
     <div class="sector-item office" onclick="showAlert('Office Sector')">
         <img src="~/uploads/Group 456.png" alt="Office Icon" />
@@ -89,7 +85,6 @@
     </div>
 </section>
 
-<!-- About Section -->
 <section class="about-section" style="background-image: url('@(Model.FirstOrDefault(m => m.SectionType == "About")?.ImagePath ?? "/images/about-default.jpg")');">
     <div class="about-overlay"></div>
     <div class="about-content">

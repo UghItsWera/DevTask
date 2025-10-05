@@ -16,7 +16,6 @@ namespace VertoDevTest.Controllers
             _environment = environment;
         }
 
-        // GET: Admin
         public async Task<IActionResult> Index()
         {
             var sections = await _context.PageSections
@@ -25,25 +24,21 @@ namespace VertoDevTest.Controllers
             return View(sections);
         }
 
-        // GET: Admin/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(PageSection pageSection, IFormFile? ImageFile)
         {
             if (ModelState.IsValid)
             {
-                // Handle image upload
                 if (ImageFile != null && ImageFile.Length > 0)
                 {
                     var uploadsFolder = Path.Combine(_environment.WebRootPath, "images", "uploads");
                     
-                    // Create directory if it doesn't exist
                     if (!Directory.Exists(uploadsFolder))
                     {
                         Directory.CreateDirectory(uploadsFolder);
@@ -70,7 +65,6 @@ namespace VertoDevTest.Controllers
             return View(pageSection);
         }
 
-        // GET: Admin/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -153,7 +147,6 @@ namespace VertoDevTest.Controllers
             return View(pageSection);
         }
 
-        // GET: Admin/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

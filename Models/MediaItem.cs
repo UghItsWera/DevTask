@@ -19,7 +19,7 @@ namespace VertoDevTest.Models
         public string FilePath { get; set; }
 
         [MaxLength(50)]
-        public string? FileType { get; set; } // Image, Video, Document
+        public string? FileType { get; set; }
 
         public long FileSize { get; set; }
 

@@ -17,7 +17,6 @@ namespace VertoDevTest.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            // Configure PageSection entity
             modelBuilder.Entity<PageSection>(entity =>
             {
                 entity.HasKey(e => e.Id);
@@ -29,7 +28,6 @@ namespace VertoDevTest.Data
                 entity.HasIndex(e => e.DisplayOrder);
             });
 
-            // Configure MediaItem entity
             modelBuilder.Entity<MediaItem>(entity =>
             {
                 entity.HasKey(e => e.Id);

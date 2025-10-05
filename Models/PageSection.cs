@@ -9,7 +9,7 @@ namespace VertoDevTest.Models
 
         [Required]
         [MaxLength(100)]
-        public string SectionType { get; set; } // Hero, Services, Portfolio, About
+        public string SectionType { get; set; }
 
         [Required]
         [MaxLength(200)]
