@@ -541,6 +541,12 @@ footer {
   .sectors-section { gap: 3rem; flex-wrap: wrap; }
   .footer-content { grid-template-columns: 1fr; gap: 2rem; }
 }
+.socialmedia-icon {
+  width: 12px;
+  height: 12px;
+  object-fit: contain;
+  opacity: 0.9;
+}
 
 @media (max-width: 768px) {
   header { flex-direction: column; gap: 1rem; }
