@@ -153,7 +153,6 @@ C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\rjsm
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\scopedcss\bundle\VertoDevTest.styles.css
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\scopedcss\projectbundle\VertoDevTest.bundle.scp.css
-C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\rvkza9b0dy-1y9ztzmfh3.gz
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\hp23yrvew3-61n19gt1b8.gz
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\dqu4ncoynh-ata4zf6p44.gz
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\xqahmaopx6-bqjiyaj88i.gz
@@ -228,3 +227,4 @@ C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\refi
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.pdb
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.genruntimeconfig.cache
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\ref\VertoDevTest.dll
+C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\rvkza9b0dy-ssjj4ub4tk.gz
