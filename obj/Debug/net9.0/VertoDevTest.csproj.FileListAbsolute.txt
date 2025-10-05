@@ -215,8 +215,6 @@ C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\comp
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\inv3aaxqbb-87fc7y1x7t.gz
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\nxio0qg3ni-mlv21k5csn.gz
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\itzht6ktxv-qfrxmv3e2u.gz
-C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\1kqu9w5259-ma89s3zmyf.gz
-C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\ilz027tydz-ma89s3zmyf.gz
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\staticwebassets.build.json
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\staticwebassets.build.json.cache
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\staticwebassets.development.json
@@ -227,4 +225,6 @@ C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\refi
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.pdb
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\VertoDevTest.genruntimeconfig.cache
 C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\ref\VertoDevTest.dll
-C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\rvkza9b0dy-73l7jzs2re.gz
+C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\rvkza9b0dy-4m44runp9v.gz
+C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\1kqu9w5259-gpkkpc811c.gz
+C:\Users\weron\Downloads\verto_test_v3\assets\VertoDevTest\obj\Debug\net9.0\compressed\ilz027tydz-gpkkpc811c.gz
