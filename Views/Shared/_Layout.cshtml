@@ -7,72 +7,55 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <!-- Header Navigation -->
-    <header>
-        <div class="header-top">
-            <a href="#" class="btn-header" onclick="showAlert('Have A Project'); return false;">
-                HAVE A PROJECT?
-            </a>
-        </div>
-        <div class="header-main">
-            <a href="/" class="logo" onclick="showAlert('Logo / Home'); return false;"><img src="~/uploads/logo.png" alt="Logo" /></a>
-            <div class="header-right">
-                <nav>
-                    <a href="#" class="active" onclick="showAlert('Home'); return false;">Home</a>
-                    <a href="#" onclick="showAlert('Services'); return false;">Services</a>
-                    <a href="#" onclick="showAlert('Sustainability'); return false;">Sustainability</a>
-                    <a href="#" onclick="showAlert('Our Work'); return false;">Our Work</a>
-                    <a href="#" onclick="showAlert('Resources'); return false;">Resources</a>
-                    <a href="#" onclick="showAlert('About iOTA'); return false;">About iOTA</a>
-                    <a href="#" onclick="showAlert('Get In Touch'); return false;">Get In Touch</a>
-                </nav>
-                <span class="search-icon" onclick="showAlert('Search')">🔍</span>
-            </div>
-        </div>
-    </header>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
-    <!-- Main Content -->
-    <main>
-        @RenderBody()
-    </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-company">
-                <div class="footer-logo">iOTA</div>
-                <div class="footer-info">
-                    <p>© iOTA Interiors Limited. iOTA Office Furniture</p>
-                    <p><a href="#" onclick="showAlert('Terms & Conditions'); return false;">Terms & Conditions</a></p>
-                    <p>Site by Verto</p>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Head Office</h4>
-                <p>The Coldbine, Gazillion Green Park, Dunston,</p>
-                <p>Northampton, NN7 2EQ</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Connect with Us</h4>
-                <p><a href="#" onclick="showAlert('Connect with Us'); return false;"><img src="Linkedin-logo.png" alt="LinkedIn" class="socialmedia-icon"> Connect with Us</a></p>
-                <p><a href="#" onclick="showAlert('Like Us'); return false;"><img src="Facebook-logo.png" alt="Facebook" class="socialmedia-icon"> Like Us</a></p>
-                <p><a href="tel:+441604269610"> +44 (0) 1604 269610</a></p>
-                <p><a href="mailto:hello@iotaofficefurniture.co.uk"> hello@iotaofficefurniture.co.uk</a></p>
+<header>
+    <div class="header-top">
+        <a href="#" class="btn-header" onclick="showAlert('Have A Project'); return false;">
+            HAVE A PROJECT?
+        </a>
+    </div>
+    <div class="header-main">
+        <a href="/" class="logo" onclick="showAlert('Logo / Home'); return false;">
+            <img src="~/uploads/logo.png" alt="Logo" />
+        </a>
+        <div class="header-right">
+            <nav class="nav-menu">
+                <a href="#" class="active" onclick="showAlert('Home'); return false;">Home</a>
+                <a href="#" onclick="showAlert('Services'); return false;">Services</a>
+                <a href="#" onclick="showAlert('Sustainability'); return false;">Sustainability</a>
+                <a href="#" onclick="showAlert('Our Work'); return false;">Our Work</a>
+                <a href="#" onclick="showAlert('Resources'); return false;">Resources</a>
+                <a href="#" onclick="showAlert('About iOTA'); return false;">About iOTA</a>
+                <a href="#" onclick="showAlert('Get In Touch'); return false;">Get In Touch</a>
+            </nav>
+            <span class="search-icon" onclick="showAlert('Search')">
+                <img src="~/uploads/search.png" alt="search">
+            </span>
+            <div class="hamburger" onclick="toggleMenu()">
+                <div></div>
+                <div></div>
+                <div></div>
             </div>
         </div>
-    </footer>
+    </div>
+</header>
 
-    <script>
-        function showAlert(buttonName) {
-            alert('This is a button: ' + buttonName);
-        }
-    </script>
+<script>
+function showAlert(buttonName) {
+    alert('This is a button: ' + buttonName);
+}
+
+function toggleMenu() {
+    document.querySelector('nav.nav-menu').classList.toggle('show');
+}
+</script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
