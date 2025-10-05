@@ -8,6 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
@@ -49,34 +50,52 @@
     <main>
         @RenderBody()
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-company">
-                <div class="footer-logo">iOTA</div>
-                <div class="footer-info">
-                    <p>© iOTA Interiors Limited. iOTA Office Furniture</p>
-                    <p><a href="#" onclick="showAlert('Terms & Conditions'); return false;">Terms & Conditions</a></p>
-                    <p>Site by Verto</p>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Head Office</h4>
-                <p>The Coldbine, Gazillion Green Park, Dunston,</p>
-                <p>Northampton, NN7 2EQ</p>
-            </div>
-            
-            <div class="footer-section">
-                <h4>Connect with Us</h4>
-                <p><a href="#" onclick="showAlert('Connect with Us'); return false;"><img src="~/uploads/Linkedin_logo.png" alt="LinkedIn" class="socialmedia-icon"> Connect with Us</a></p>
-                <p><a href="#" onclick="showAlert('Like Us'); return false;"><img src="~/uploads/Facebook_logo.png" alt="Facebook" class="socialmedia-icon"> Like Us</a></p>
-                <p><a href="tel:+441604269610"> +44 (0) 1604 269610</a></p>
-                <p><a href="mailto:hello@iotaofficefurniture.co.uk"> hello@iotaofficefurniture.co.uk</a></p>
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <!-- Company Info -->
+        <div class="footer-company">
+            <div class="footer-logo">iOTA</div>
+            <div class="footer-info">
+                <p>© iOTA Interiors Limited. iOTA Office Furniture</p>
+                <p><a href="#" onclick="showAlert('Terms & Conditions'); return false;">Terms & Conditions</a></p>
+                <p>Site by Verto</p>
             </div>
         </div>
-    </footer>
+
+        <!-- Head Office -->
+        <div class="footer-section">
+            <h4>Head Office</h4>
+            <p>The Coldbine, Gazillion Green Park, Dunston,</p>
+            <p>Northampton, NN7 2EQ</p>
+        </div>
+
+        <!-- Connect with Us -->
+        <div class="footer-section">
+            <h4>Connect with Us</h4>
+            <p>
+                <a href="#" onclick="showAlert('Connect with Us'); return false;">
+                    <img src="~/uploads/Linkedin_logo.png" alt="LinkedIn" class="socialmedia-icon"> Connect with Us
+                </a>
+            </p>
+            <p>
+                <a href="#" onclick="showAlert('Like Us'); return false;">
+                    <img src="~/uploads/Facebook_logo.png" alt="Facebook" class="socialmedia-icon"> Like Us
+                </a>
+            </p>
+            <p>
+                <a href="mailto:hello@iotaofficefurniture.co.uk">
+                    <i class="fa fa-envelope"></i> hello@iotaofficefurniture.co.uk
+                </a>
+            </p>
+            <p>
+                <a href="tel:+441604269610">
+                    <i class="fa fa-phone"></i> +44 (0) 1604 269610
+                </a>
+            </p>
+        </div>
+    </div>
+</footer>
 
     <script>
         function showAlert(buttonName) {
