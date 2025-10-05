@@ -13,9 +13,7 @@
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-
-<header>
+    <header>
     <div class="header-top">
         <a href="#" class="btn-header" onclick="showAlert('Have A Project'); return false;">
             HAVE A PROJECT?
@@ -47,15 +45,47 @@
     </div>
 </header>
 
-<script>
-function showAlert(buttonName) {
-    alert('This is a button: ' + buttonName);
-}
+    <!-- Main Content -->
+    <main>
+        @RenderBody()
+    </main>
 
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-company">
+                <div class="footer-logo">iOTA</div>
+                <div class="footer-info">
+                    <p>© iOTA Interiors Limited. iOTA Office Furniture</p>
+                    <p><a href="#" onclick="showAlert('Terms & Conditions'); return false;">Terms & Conditions</a></p>
+                    <p>Site by Verto</p>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Head Office</h4>
+                <p>The Coldbine, Gazillion Green Park, Dunston,</p>
+                <p>Northampton, NN7 2EQ</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4>Connect with Us</h4>
+                <p><a href="#" onclick="showAlert('Connect with Us'); return false;"><img src=~/uploads/"Linkedin-logo.png" alt="LinkedIn" class="socialmedia-icon"> Connect with Us</a></p>
+                <p><a href="#" onclick="showAlert('Like Us'); return false;"><img src=~/uploads/"Facebook-logo.png" alt="Facebook" class="socialmedia-icon"> Like Us</a></p>
+                <p><a href="tel:+441604269610"> +44 (0) 1604 269610</a></p>
+                <p><a href="mailto:hello@iotaofficefurniture.co.uk"> hello@iotaofficefurniture.co.uk</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function showAlert(buttonName) {
+            alert('This is a button: ' + buttonName);
+        }
 function toggleMenu() {
-    document.querySelector('nav.nav-menu').classList.toggle('show');
+    document.querySelector('.nav-menu').classList.toggle('show');
 }
-</script>
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
